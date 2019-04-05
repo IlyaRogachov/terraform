@@ -1,0 +1,12 @@
+---
+- hosts: dev
+  become: yes
+  remote_user: ec2-user
+  tasks:
+      - name: Install Apache.
+        yum: name={{ item }} state=present
+        with_items
+        - httpd
+        - php
+        - php-mysql
+      - name: Download WP
